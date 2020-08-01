@@ -9,6 +9,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/yulang-parser" />
+            <option value="$PROJECT_DIR$/yulang-shell" />
           </set>
         </option>
       </GradleProjectSettings>

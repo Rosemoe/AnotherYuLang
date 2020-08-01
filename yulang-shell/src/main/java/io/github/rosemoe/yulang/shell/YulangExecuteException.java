@@ -14,18 +14,28 @@
  *    limitations under the License.
  */
 
-plugins {
-    id 'java'
-}
+package io.github.rosemoe.yulang.shell;
 
-group 'io.github.rosemoe'
-version '0.1.0'
+public class YulangExecuteException extends RuntimeException {
 
-repositories {
-    mavenCentral()
-}
 
-dependencies {
-    implementation group: 'org.antlr', name: 'antlr4-runtime', version: '4.8'
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+    public YulangExecuteException() {
+    }
+
+    public YulangExecuteException(String message) {
+        super(message);
+    }
+
+    public YulangExecuteException(String message, Throwable cause) {
+        super(message, cause);
+    }
+
+    public YulangExecuteException(Throwable cause) {
+        super(cause);
+    }
+
+    public YulangExecuteException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+        super(message, cause, enableSuppression, writableStackTrace);
+    }
+
 }

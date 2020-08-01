@@ -1,19 +1,3 @@
-/*
- *    Copyright 2020 Rosemoe
- *
- *    Licensed under the Apache License, Version 2.0 (the "License");
- *    you may not use this file except in compliance with the License.
- *    You may obtain a copy of the License at
- *
- *        http://www.apache.org/licenses/LICENSE-2.0
- *
- *    Unless required by applicable law or agreed to in writing, software
- *    distributed under the License is distributed on an "AS IS" BASIS,
- *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *    See the License for the specific language governing permissions and
- *    limitations under the License.
- */
-
 package io.github.rosemoe.yulang.parser;// Generated from D:/IdeaProjects/AnotherYuLang/yulang-parser/src/main/antlr\YulangParser.g4 by ANTLR 4.8
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
@@ -113,6 +97,16 @@ public interface YulangParserListener extends ParseTreeListener {
 	 */
 	void exitAssignmentStatement(YulangParser.AssignmentStatementContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link YulangParser#variantType}.
+	 * @param ctx the parse tree
+	 */
+	void enterVariantType(YulangParser.VariantTypeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link YulangParser#variantType}.
+	 * @param ctx the parse tree
+	 */
+	void exitVariantType(YulangParser.VariantTypeContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link YulangParser#expression}.
 	 * @param ctx the parse tree
 	 */
@@ -202,6 +196,26 @@ public interface YulangParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitIfStatement(YulangParser.IfStatementContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link YulangParser#elseIfLabel}.
+	 * @param ctx the parse tree
+	 */
+	void enterElseIfLabel(YulangParser.ElseIfLabelContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link YulangParser#elseIfLabel}.
+	 * @param ctx the parse tree
+	 */
+	void exitElseIfLabel(YulangParser.ElseIfLabelContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link YulangParser#elseLabel}.
+	 * @param ctx the parse tree
+	 */
+	void enterElseLabel(YulangParser.ElseLabelContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link YulangParser#elseLabel}.
+	 * @param ctx the parse tree
+	 */
+	void exitElseLabel(YulangParser.ElseLabelContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link YulangParser#whileStatement}.
 	 * @param ctx the parse tree

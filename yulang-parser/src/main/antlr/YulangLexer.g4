@@ -15,8 +15,6 @@
  */
  lexer grammar YulangLexer;
 
-IDENTIFIER:  Letter LetterOrDigit*;
-
 //Prefixs
 LOCAL:       's';
 CONTEXT:     'ss';
@@ -25,7 +23,7 @@ GLOBAL:      'sss';
 //Keywords
 IF:          'f';
 ELSE:        'else';
-WHILE:       'while';
+WHILE:       'w';
 FOR:         'for';
 FUNCTION:    'fn';
 END:         'end';
@@ -33,11 +31,12 @@ ENDCODE:     'endcode';
 BREAK:       'break';
 
 //Constant literals
-NUMBER:    ('0' | [1-9] (Digits? | '_'+ Digits));
-STRING_LITERAL:     '"' (~["\\\r\n] | EscapeSequence)* '"';
+NUMBER:    ('0' | [1-9] Digits?);
+STRING:     '"' (~["\\\r\n] | EscapeSequence)* '"';
 TRUE:        'true';
 FALSE:       'false';
 NULL:        'null';
+IDENTIFIER:  Letter LetterOrDigit*;
 
 //Separators
 LPAREN:             '(';
@@ -53,16 +52,16 @@ PLUS:               '+';
 MINUS:              '-';
 MULTI:              '*';
 DIV:                '/';
-EQ:                 '=';
 EQEQ:               '==';
-LT:                 '<';
+EQ:                 '=';
 LTEQ:               '<=';
-GT:                 '>';
+LT:                 '<';
 GTEQ:               '>=';
+GT:                 '>';
 NOTEQ:              '!=';
 STARTSWITH:         '?*';
-ENDSWITH:           '*?';
 CONTAINS:           '?';
+ENDSWITH:           '*?';
 ANDAND:             '&&';
 OROR:               '||';
 
@@ -76,11 +75,6 @@ COMMENT:            '/.' .*? './'    -> channel(HIDDEN);
 //Fragments
 fragment EscapeSequence
     : '\\' [btnfr"'\\]
-    | '\\' ([0-3]? [0-7])? [0-7]
-    | '\\' 'u'+ HexDigit HexDigit HexDigit HexDigit
-    ;
-fragment HexDigit
-    : [0-9a-fA-F]
     ;
 fragment Digits
     : [0-9] ([0-9_]* [0-9])?

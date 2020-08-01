@@ -42,13 +42,15 @@ statements
     ;
 
 statement
-    : functionCallStatement
+    : assignmentStatement
+    | functionCallStatement
     | moduleFunctionCallStatement
-    | assignmentStatement
     | ifStatement
     | whileStatement
     | forStatement
     | blockStatement
+    | breakStatement='break'
+    | endcodeStatement='endcode'
     ;
 
 blockStatement
@@ -56,11 +58,18 @@ blockStatement
     ;
 
 assignmentStatement
-    : type=('s' | 'ss' | 'sss') name=IDENTIFIER '=' expression
+    : variantType name=IDENTIFIER EQ expression
+    ;
+
+variantType
+    : LOCAL
+    | CONTEXT
+    | GLOBAL
     ;
 
 expression
-    : primaryExpression
+    : '(' expression ')'
+    | primaryExpression
     | expression operator=('*' | '/') expression
     | expression operator=('+' | '-') expression
     | expression operator=('?*' | '*?' | '?' | '==' | '!=' | '<' | '>' | '<=' | '>=' | '||' | '&&') expression
@@ -72,10 +81,11 @@ primaryExpression
     | TRUE
     | FALSE
     | NULL
+    | STRING
     ;
 
 readableVariant
-    : (type=('s' | 'ss' |'sss') '.')? IDENTIFIER
+    : (variantType '.')? IDENTIFIER
     ;
 
 moduleFunctionCallStatement
@@ -87,7 +97,7 @@ functionCallStatement
     ;
 
 functionCall
-    : name=IDENTIFIER '(' argumentList ')'
+    : name=IDENTIFIER '(' argumentList ')' blockStatement?
     ;
 
 argumentList
@@ -99,7 +109,15 @@ argument
     ;
 
 ifStatement
-    : IF '(' expression ')' statement (ELSE IF '(' expression ')' statement)* (ELSE statement)?
+    : IF '(' condition=expression ')' statement elseIfLabel* elseLabel?
+    ;
+
+elseIfLabel
+    : ELSE IF '(' expression ')' statement
+    ;
+
+elseLabel
+    : ELSE statement
     ;
 
 whileStatement

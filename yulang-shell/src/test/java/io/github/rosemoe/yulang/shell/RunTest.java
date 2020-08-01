@@ -14,7 +14,22 @@
  *    limitations under the License.
  */
 
-rootProject.name = 'AnotherYuLang'
-include 'yulang-parser'
-include 'yulang-shell'
+package io.github.rosemoe.yulang.shell;
 
+public class RunTest {
+
+    public static void main(String[] args) {
+        YulangShell yulangShell = new YulangShell();
+        String source = "s a=1\n" +
+                "syso(a)\n" +
+                "s b = a * 2\n" +
+                "syso(b)\n" +
+                "for(1;10) {\n" +
+                "s b = b * 2" +
+                "syso(b)" +
+                "f(b > 500) break" +
+                "}";
+        yulangShell.eval(source, "test", new YulangExecuteContext(114514));
+    }
+
+}
